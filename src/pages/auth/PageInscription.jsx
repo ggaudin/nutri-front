@@ -69,8 +69,10 @@ const PageInscription = () => {
         console.log(registerRequest);
         try {
             await register(registerRequest);
-            console.log("inscription OK");
-            navigate("/accueil");
+
+            alert("Votre compte a bien été créé. Connectez-vous pour commencer à utiliser Nutri.");
+
+            navigate("/connexion");
         } catch (apiError) {
             console.log(apiError);
             setError("Veuillez vérifier que tous les champs requis sont remplis.");

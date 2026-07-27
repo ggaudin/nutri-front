@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { login } from "../../api/authService";
 import { useNavigate } from "react-router-dom";
 import { getCurrentUser } from "../../api/authService";
+import { useAuth } from "../../context/AuthContext";
 
 const PageConnexion = () => {
 
@@ -10,6 +10,7 @@ const PageConnexion = () => {
     const [error, setError] = useState("");
 
     const navigate = useNavigate();
+    const {login} = useAuth();
 
     const handleLogin = async (event) => {
         event.preventDefault();
@@ -19,12 +20,14 @@ const PageConnexion = () => {
             password
         };
         try {
-            const authResponse = await login(loginRequest);
-            const token = authResponse.data.token;
-            localStorage.setItem("token", token);
-            const userResponse = await getCurrentUser();
-            console.log(userResponse.data);
-            navigate("/accueil");
+            const user = await login(loginRequest);
+            
+            if(user.role === "PATIENT"){
+                navigate("/profil-patient");
+            } else if(user.role === "DIETETICIEN"){
+                navigate("/profil-diet");
+            }
+            
         } catch (apiError) {
             console.log(apiError);
             setError("Email ou mot de passe incorrect.");
@@ -37,9 +40,9 @@ const PageConnexion = () => {
                 <h1>Connexion</h1>
                 {error && <p>{error}</p>}
                 <label htmlFor="mail">E-mail</label><br/>
-                <input type="email" id="mail" placeholder = "E-mail" value={email} onChange={(e) => setEmail(e.target.value)}/><br/><br/>
+                <input type="email" id="mail" value={email} onChange={(e) => setEmail(e.target.value)}/><br/><br/>
                 <label htmlFor="password">Mot de passe</label><br/>
-                <input type="password" id="password" placeholder="Mot de passe" value={password} onChange={(e) => setPassword(e.target.value)}/><br/><br/>
+                <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)}/><br/><br/>
                 <input type="submit" value="Se connecter"/>
             </form>
         </div>
