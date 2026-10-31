@@ -5,10 +5,10 @@ const AccueilDiet = () => {
     const { user } = useAuth();
 
     return (
-    <div>
-        <h1>Accueil Diet</h1><br/>
-        <h1>Bienvenue { user.prenom }</h1>
-    </div>
+        <div>
+            <h1>Bonjour {user.prenom} ! (Diet)</h1>
+            <p>Que voulez-vous faire aujourd'hui ?</p>
+        </div>
     );
 
 }

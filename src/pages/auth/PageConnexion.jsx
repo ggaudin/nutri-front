@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { getCurrentUser } from "../../api/authService";
 import { useAuth } from "../../context/AuthContext";
 
 const PageConnexion = () => {
@@ -25,7 +24,7 @@ const PageConnexion = () => {
             if(user.role === "PATIENT"){
                 navigate("/profil-patient");
             } else if(user.role === "DIETETICIEN"){
-                navigate("/profil-diet");
+                navigate("/diet");
             }
             
         } catch (apiError) {

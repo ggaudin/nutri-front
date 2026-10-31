@@ -5,10 +5,15 @@ import ProtectedRoute from "./ProtectedRoute";
 import PageAccueil from "../pages/PageAccueil";
 import PageConnexion from "../pages/auth/PageConnexion";
 import PageInscription from "../pages/auth/PageInscription";
+import AccesInterdit from "../pages/AccesInterdit";
 
 import AccueilPatient from "../pages/patient/AccueilPatient";
+
+import DietLayout from "../layouts/DietLayout";
 import AccueilDiet from "../pages/dieteticien/AccueilDiet";
-import AccesInterdit from "../pages/AccesInterdit";
+import ListePatients from "../pages/dieteticien/ListePatients";
+import DetailPatient from "../pages/dieteticien/DetailPatient";
+import ProfilDiet from "../pages/dieteticien/ProfilDiet";
 
 const AppRouter = () => {
 
@@ -24,7 +29,7 @@ const AppRouter = () => {
             <Route path="/inscription" element={<PageInscription />} />
             <Route path="/acces-interdit" element={<AccesInterdit />} />
 
-            Pages protégées
+            {/*Pages protégées*/}
 
             <Route
                 path="/profil-patient"
@@ -36,18 +41,28 @@ const AppRouter = () => {
             />
 
             <Route
-                path="/profil-diet"
+                path="/diet"
                 element={
                     <ProtectedRoute roles={["DIETETICIEN"]}>
-                        <AccueilDiet />
+                        <DietLayout />
                     </ProtectedRoute>
                 }
-            />
+            >
+
+                <Route index element={<AccueilDiet />} />
+                <Route path="patients" element={<ListePatients />} />
+                <Route
+                    path="patients/:patientId"
+                    element={<DetailPatient />}
+                />
+                <Route path="profil" element={<ProfilDiet />} />
+
+            </Route>
 
         </Routes>
 
     );
 
-};
+}
 
 export default AppRouter;
