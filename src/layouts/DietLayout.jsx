@@ -11,7 +11,7 @@ const DietLayout = () => {
         <div>
             <header>
                 <h1>Nutri</h1>
-                <p>Bienvenue {user.prenom}</p>
+                <p>Bonjour {user.prenom}</p>
             </header>
 
             <NavbarDiet />

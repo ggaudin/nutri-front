@@ -14,6 +14,8 @@ import AccueilDiet from "../pages/dieteticien/AccueilDiet";
 import ListePatients from "../pages/dieteticien/ListePatients";
 import DetailPatient from "../pages/dieteticien/DetailPatient";
 import ProfilDiet from "../pages/dieteticien/ProfilDiet";
+import ModelesPlansAlimentaires from "../pages/dieteticien/ModelesPlansAlimentaires";
+import ConsultationPlan from "../pages/plansalimentaires/ConsultationPlan";
 
 const AppRouter = () => {
 
@@ -55,7 +57,12 @@ const AppRouter = () => {
                     path="patients/:patientId"
                     element={<DetailPatient />}
                 />
+                <Route
+                    path="patients/:patientId/palim/:planId"
+                    element={<ConsultationPlan />}
+                />
                 <Route path="profil" element={<ProfilDiet />} />
+                <Route path="modeles-plans" element={<ModelesPlansAlimentaires />} />
 
             </Route>
 

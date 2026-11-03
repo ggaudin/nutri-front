@@ -10,6 +10,10 @@ const NavbarDiet = () => {
             <NavLink to="/diet/profil">
                 Mon profil
             </NavLink>
+
+            <NavLink to="/diet/modeles-plans">
+                Plans Alimentaires
+            </NavLink>
         </nav>
     );
 };
